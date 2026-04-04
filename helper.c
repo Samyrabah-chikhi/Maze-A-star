@@ -1,8 +1,8 @@
 #include "helper.h"
 
-void drawBrickGrid(SDL_Renderer *renderer, point **grid, int rectnumx, int rectnumy, int size)
+void drawBrickGrid(SDL_Renderer *renderer, point **grid, int rectnumx, int rectnumy)
 {
-    SDL_FRect rect = {0, 0, size, size};
+    SDL_FRect rect = {0, 0, BLOCK_SIZE, BLOCK_SIZE};
 
     for (int i = 0; i < rectnumy; i++)
     {
@@ -15,9 +15,17 @@ void drawBrickGrid(SDL_Renderer *renderer, point **grid, int rectnumx, int rectn
             {
                 SDL_SetRenderDrawColor(renderer, 158, 51, 51, 255);
             }
+            else if(grid[i][j].type == ADDED)
+            {
+                SDL_SetRenderDrawColor(renderer, 204,125,99, 255);
+            }
             else if (grid[i][j].type == TRAVELED)
             {
                 SDL_SetRenderDrawColor(renderer, 97, 127, 141, 255);
+            }
+            else if (grid[i][j].type == PATH)
+            {
+                SDL_SetRenderDrawColor(renderer, 107, 66, 92, 255);
             }
             else if (grid[i][j].type == WALL)
             {
@@ -51,6 +59,12 @@ point **gridGenerator(int rectnumx, int rectnumy)
             grid[i][j].x = x;
             grid[i][j].y = y;
             grid[i][j].type = ROAD;
+
+            grid[i][j].gCost = INT_MAX;
+            grid[i][j].hCost = 0;
+            grid[i][j].fCost = INT_MAX;
+            grid[i][j].parent = NULL;
+            grid[i][j].visited = false;
 
             x += 100;
         }
@@ -94,7 +108,7 @@ void destroySDL(SDL_Window *window, SDL_Renderer *renderer)
     SDL_Quit();
 }
 
-
-int heuristic(point *a, point *b, int cellSize) {
-    return abs(a->x - b->x)/cellSize + abs(a->y - b->y)/cellSize;
+int heuristic(point *a, point *b)
+{
+    return 10 * (abs(a->x - b->x) / BLOCK_SIZE + abs(a->y - b->y) / BLOCK_SIZE);
 }
