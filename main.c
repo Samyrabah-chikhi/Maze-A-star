@@ -17,9 +17,20 @@ int main(int argc, char *argv[])
     SDL_Event event;
     bool quit = false;
 
-    SDL_FRect rect = {0, 0, 100, 100};
     int rectnumx = 12;
     int rectnumy = 8;
+    int size = 100;
+
+    int startX = 0;
+    int startY = 0;
+
+    int goalX = 9;
+    int goalY = 6;
+
+    point **grid = gridGenerator(rectnumx, rectnumy);
+    grid[goalY][goalX].type = GOAL;       
+    grid[startX][startY].type = TRAVELED; 
+
 
     while (!quit)
     {
@@ -32,12 +43,15 @@ int main(int argc, char *argv[])
         }
 
         clearScreen(renderer);
-        drawBrickGrid(renderer, rect, rectnumx, rectnumy);
-
+        drawBrickGrid(renderer, grid, rectnumx, rectnumy, size);
         SDL_RenderPresent(renderer);
+
     }
 
-    destroySDL(window,renderer);
+    for (int i = 0; i < rectnumy; i++)
+        free(grid[i]);
+    free(grid);
+    destroySDL(window, renderer);
 
     return 0;
 }
