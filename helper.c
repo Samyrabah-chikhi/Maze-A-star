@@ -15,9 +15,9 @@ void drawBrickGrid(SDL_Renderer *renderer, point **grid, int rectnumx, int rectn
             {
                 SDL_SetRenderDrawColor(renderer, 158, 51, 51, 255);
             }
-            else if(grid[i][j].type == ADDED)
+            else if (grid[i][j].type == ADDED)
             {
-                SDL_SetRenderDrawColor(renderer, 204,125,99, 255);
+                SDL_SetRenderDrawColor(renderer, 204, 125, 99, 255);
             }
             else if (grid[i][j].type == TRAVELED)
             {
@@ -29,7 +29,7 @@ void drawBrickGrid(SDL_Renderer *renderer, point **grid, int rectnumx, int rectn
             }
             else if (grid[i][j].type == WALL)
             {
-                SDL_SetRenderDrawColor(renderer, 61, 67, 75, 255);
+                SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255);
             }
             else
             {
@@ -45,6 +45,7 @@ void drawBrickGrid(SDL_Renderer *renderer, point **grid, int rectnumx, int rectn
 
 point **gridGenerator(int rectnumx, int rectnumy)
 {
+    srand(time(NULL));
     int y = 0;
 
     point **grid = malloc(rectnumy * sizeof(point *));
@@ -58,7 +59,14 @@ point **gridGenerator(int rectnumx, int rectnumy)
         {
             grid[i][j].x = x;
             grid[i][j].y = y;
-            grid[i][j].type = ROAD;
+            if (rand() % 100 < 30)
+            {
+                grid[i][j].type = WALL;
+            }
+            else
+            {
+                grid[i][j].type = ROAD;
+            }
 
             grid[i][j].gCost = INT_MAX;
             grid[i][j].hCost = 0;

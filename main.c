@@ -3,7 +3,7 @@
 
 int main(int argc, char *argv[])
 {
-    SDL_Window *window = createWindow("Maze Runner");
+    SDL_Window *window = createWindow("A* Maze Runner");
     if (!window)
     {
         return -1;
