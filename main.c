@@ -19,8 +19,11 @@ int main(int argc, char *argv[])
     bool quit = false;
     bool found = false;
 
-    int rectnumx = 12;
-    int rectnumy = 8;
+    int rectnumx = WINDOW_WIDTH / BLOCK_SIZE;
+    int rectnumy = WINDOW_HEIGHT / BLOCK_SIZE;
+    
+    printf("rectnumx: %d, rectnumy: %d\n", rectnumx, rectnumy);
+    printf("BLOCK_SIZE: %d\n", BLOCK_SIZE);
 
     int startX = 0;
     int startY = 3;
@@ -61,7 +64,7 @@ int main(int argc, char *argv[])
         {
             grid[goalY][goalX].type = GOAL;
         }
-        SDL_Delay(100);
+        SDL_Delay(200);
 
         clearScreen(renderer);
         drawBrickGrid(renderer, grid, rectnumx, rectnumy);

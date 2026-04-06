@@ -11,33 +11,41 @@ void drawBrickGrid(SDL_Renderer *renderer, point **grid, int rectnumx, int rectn
             rect.x = grid[i][j].x;
             rect.y = grid[i][j].y;
 
-            if (grid[i][j].type == ROAD)
+            switch (grid[i][j].type)
             {
-                SDL_SetRenderDrawColor(renderer, 158, 51, 51, 255);
+                case ROAD:
+                    SDL_SetRenderDrawColor(renderer, 240, 240, 240, 255); // light gray
+                    break;
+
+                case ADDED:
+                    SDL_SetRenderDrawColor(renderer, 0, 120, 255, 255); // blue (open list)
+                    break;
+
+                case TRAVELED:
+                    SDL_SetRenderDrawColor(renderer, 100, 200, 255, 255); // light blue
+                    break;
+
+                case PATH:
+                    SDL_SetRenderDrawColor(renderer, 255, 215, 0, 255); // yellow (final path)
+                    break;
+
+                case WALL:
+                    SDL_SetRenderDrawColor(renderer, 40, 40, 40, 255); // dark gray
+                    break;
+
+                case GOAL:
+                    SDL_SetRenderDrawColor(renderer, 0, 200, 0, 255); // green
+                    break;
+
+                default:
+                    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // debug (should not happen)
+                    break;
             }
-            else if (grid[i][j].type == ADDED)
-            {
-                SDL_SetRenderDrawColor(renderer, 204, 125, 99, 255);
-            }
-            else if (grid[i][j].type == TRAVELED)
-            {
-                SDL_SetRenderDrawColor(renderer, 97, 127, 141, 255);
-            }
-            else if (grid[i][j].type == PATH)
-            {
-                SDL_SetRenderDrawColor(renderer, 107, 66, 92, 255);
-            }
-            else if (grid[i][j].type == WALL)
-            {
-                SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255);
-            }
-            else
-            {
-                SDL_SetRenderDrawColor(renderer, 67, 160, 71, 255);
-            }
+
             SDL_RenderFillRect(renderer, &rect);
 
-            SDL_SetRenderDrawColor(renderer, 215, 197, 154, 255);
+            // Grid border
+            SDL_SetRenderDrawColor(renderer, 180, 180, 180, 255);
             SDL_RenderRect(renderer, &rect);
         }
     }
@@ -74,10 +82,10 @@ point **gridGenerator(int rectnumx, int rectnumy)
             grid[i][j].parent = NULL;
             grid[i][j].visited = false;
 
-            x += 100;
+            x += BLOCK_SIZE;
         }
 
-        y += 100;
+        y += BLOCK_SIZE;
     }
 
     return grid;
