@@ -14,7 +14,7 @@ OBJS = $(SRCS:.c=.o)
 SDL_PATH = C:/Users/samy/Desktop/Web/SDL/x86_64-w64-mingw32
 
 # Flags
-CFLAGS = -I $(SDL_PATH)/include
+CFLAGS = -I $(SDL_PATH)/include -I $(SDL_PATH)/include/SDL3
 LDFLAGS = -L $(SDL_PATH)/lib -lSDL3
 
 # Default target

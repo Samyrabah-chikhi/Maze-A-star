@@ -13,5 +13,6 @@ void addOpen(point *node);
 point *popLowestF();
 int isOpenEmpty();
 void printOpenList();
+void clearOpen();
 
 #endif

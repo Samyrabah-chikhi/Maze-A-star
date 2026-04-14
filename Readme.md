@@ -3,7 +3,9 @@
 Ce projet est un **visualiseur de l’algorithme A*** écrit en **C avec SDL3**.
 Il génère une grille aléatoire avec des obstacles, exécute automatiquement A* pour trouver un chemin, puis affiche le résultat.
 
-![A* visualiseur](assets/maze.png)
+![A* visualiseur](assets/unsolved.png)
+
+![A* visualiseur](assets/solved.png)
 
 ---
 

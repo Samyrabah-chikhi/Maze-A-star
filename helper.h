@@ -30,10 +30,12 @@ typedef struct point
     struct point *parent;
 } point;
 
-#define WINDOW_WIDTH 1200
-#define WINDOW_HEIGHT 800
-
 #define BLOCK_SIZE 80
+
+#define GRID_COLS 15
+#define GRID_ROWS 10
+#define WINDOW_WIDTH (GRID_COLS * BLOCK_SIZE)
+#define WINDOW_HEIGHT (GRID_ROWS * BLOCK_SIZE)
 
 point **gridGenerator(int rectnumx, int rectnumy);
 void drawBrickGrid(SDL_Renderer *renderer, point **grid, int rectnumx, int rectnumy);

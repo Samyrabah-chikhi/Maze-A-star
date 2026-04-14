@@ -89,3 +89,9 @@ void printOpenList()
         printf("%d ", openList[i]->fCost);
     printf("\n");
 }
+
+// Clear the open list
+void clearOpen()
+{
+    openSize = 0;
+}

@@ -14,27 +14,27 @@ void drawBrickGrid(SDL_Renderer *renderer, point **grid, int rectnumx, int rectn
             switch (grid[i][j].type)
             {
                 case ROAD:
-                    SDL_SetRenderDrawColor(renderer, 240, 240, 240, 255); // light gray
+                    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // white
                     break;
 
                 case ADDED:
-                    SDL_SetRenderDrawColor(renderer, 0, 120, 255, 255); // blue (open list)
+                    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // blue (open list)
                     break;
 
                 case TRAVELED:
-                    SDL_SetRenderDrawColor(renderer, 100, 200, 255, 255); // light blue
+                    SDL_SetRenderDrawColor(renderer, 173, 216, 230, 255); // light blue
                     break;
 
                 case PATH:
-                    SDL_SetRenderDrawColor(renderer, 255, 215, 0, 255); // yellow (final path)
+                    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // red (final path)
                     break;
 
                 case WALL:
-                    SDL_SetRenderDrawColor(renderer, 40, 40, 40, 255); // dark gray
+                    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // black
                     break;
 
                 case GOAL:
-                    SDL_SetRenderDrawColor(renderer, 0, 200, 0, 255); // green
+                    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // green
                     break;
 
                 default:
